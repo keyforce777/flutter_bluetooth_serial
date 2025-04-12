@@ -21,6 +21,7 @@ allprojects {
 }
 
 apply plugin: 'com.android.library'
+apply plugin: 'org.jetbrains.kotlin.android' // <— додано підтримку Kotlin для сучасних проєктів
 
 android {
     namespace "io.github.edufolly.flutterbluetoothserial"
@@ -37,8 +38,12 @@ android {
         targetCompatibility JavaVersion.VERSION_11
     }
 
+    kotlinOptions {
+        jvmTarget = '11' // <— додано jvmTarget, що збігається з JavaVersion
+    }
+
     buildFeatures {
-        buildConfig = false
+        buildConfig false
     }
 
     lintOptions {
@@ -48,4 +53,5 @@ android {
 
 dependencies {
     implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'androidx.core:core-ktx:1.12.0' // <— корисно для Kotlin сумісності
 }
